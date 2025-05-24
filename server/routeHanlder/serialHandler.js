@@ -20,4 +20,14 @@ router.post('/', async(req, res)=>{
     }
 });
 
+
+router.delete('/', async(req, res)=>{
+    try{
+        const result = await Serial.deleteMany({});
+        res.status(200).send(result);
+    }catch(err){
+        res.status(500).send(err.message || "Faild to get serial list");
+    }
+});
+
 module.exports = router;
