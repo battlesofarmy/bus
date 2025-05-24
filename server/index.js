@@ -29,8 +29,6 @@ const { Request, Response, NextFunction } = require('express');
 // List of allowed IPs or CIDR ranges
 const allowedIPs = [
   '::1',              // localhost IPv6
-  '123.45.67.89',       // static IP
-  '123.45.67.0/24',
   '127.0.0.1',        // localhost IPv4
   '103.153.110.45',     // CIDR block for your campus network,
   '103.153.110.0/24'  // campus IP range
