@@ -31,7 +31,7 @@ const allowedIPs = [
   '::1',              // localhost IPv6
   '127.0.0.1',        // localhost IPv4
 //   '103.153.110.45',     // CIDR block for your campus network,
-  '103.153.110.0/24'  // campus IP range
+//   '103.153.110.0/24'  // campus IP range
 ];
 
 // import * as ipRangeCheck from 'ip-range-check';
