@@ -15,10 +15,6 @@ export default function ScanPage() {
 
     console.log(result);
 
-    // const userData = {
-    //     name: "user"
-    // }
-    // uid: TAC8g9IkSag5m7Gy6wouaShD7YF2
 
     await api.get(`/student/${user.uid}`)
     .then((res)=> {
@@ -39,5 +35,5 @@ export default function ScanPage() {
   }
 
 //   return <QrScanner onScanSuccess={handleScan} />
-  return <button onClick={handleScan}></button>
+  return <button onClick={handleScan}>Handle Scan</button>
 }
