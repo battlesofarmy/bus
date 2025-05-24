@@ -38,5 +38,6 @@ export default function ScanPage() {
     .catch((err)=> console.log(err))
   }
 
-  return <QrScanner onScanSuccess={handleScan} />
+//   return <QrScanner onScanSuccess={handleScan} />
+  return <button onClick={handleScan}></button>
 }

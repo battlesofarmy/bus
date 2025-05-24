@@ -34,22 +34,22 @@ const SerialList = () => {
   };
 
   return (
-    <div className="grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4">
+    <div className="grid md:gap-5 gap-3 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4">
       {data.map((item) => (
         <div
           key={item._id}
           className="rounded-2xl border p-4 shadow-md bg-white hover:shadow-lg transition"
         >
-        <div className="flex justify-between items-center border-b-2 mb-3 pb-1">
-            <h2 className="text-xl font-semibold text-indigo-600">{item.name}</h2>
+        <div className="flex justify-between items-center border-b-[1px] mb-4 pb-1">
+            <h2 className="text-xl font-semibold text-indigo-600 capitalize">{item.name}</h2>
             <p className="text-sm text-gray-600">Serial: {item.serialNo}</p>
         </div>
           <div className="flex justify-between">
             <div>
-                <p className="text-sm text-gray-600">End Class: {item.endClass}</p>
                 <p className="text-sm text-gray-500 mt-1">
                     Serial At: <span className="font-medium">{formatDate(item.serialAt)}</span>
                 </p>
+                <p className="text-sm text-gray-600">End Class: {item.endClass}</p>
             </div>
             <div>
                 <p className="text-sm text-gray-600">Batch: {item.batch}</p>
