@@ -13,7 +13,7 @@ router.get('/', async(req, res)=>{
 
 router.post('/', async(req, res)=>{
     try{
-        const result = await Serial.find({});
+        const result = await Serial(req.body).save();
         res.status(200).send(result);
     }catch(err){
         res.status(500).send(err.message || "Faild to get serial list");

@@ -1,11 +1,18 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 5000;
+const mongoose = require('mongoose');
 
 // Use Middleware
 app.use(cors());
 app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI)
+.then(()=> console.log("Successfully Connected to Database"))
+.catch((err)=> console.log(err))
+
 
 
 const serialHandler = require('./routeHanlder/serialHandler');
@@ -17,6 +24,6 @@ app.get('/', (req, res)=>{
     console.log('World');
 })
 
-app.listen(port, ()=>{
+app.listen(4000, ()=>{
    console.log('Server is Running in Port: ', port);
 });

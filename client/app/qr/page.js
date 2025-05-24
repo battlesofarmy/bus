@@ -9,10 +9,12 @@ export default function WishQRCode() {
   useEffect(() => {
     const generate = async () => {
       const data = {
-        type: 'bus serial tracker',
-        wishId: '1416',
-        createdBy: 'Muntasir Ahmed',
-      }
+            name : "muntasir",
+            batch : "30",
+            id : "18",
+            endClass : "11:40 AM",
+            serialNo : "12"
+        }
 
       const url = await QRCode.toDataURL(JSON.stringify(data))
       setQrUrl(url)
