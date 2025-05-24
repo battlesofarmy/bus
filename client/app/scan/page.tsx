@@ -12,7 +12,10 @@ export default function ScanPage() {
     
   const handleScan = async (result: string) => {
 
-    if (!user) return;
+    if (!user){
+      alert("Login First");
+      return;
+    }
 
     console.log(result);
 
