@@ -1,5 +1,6 @@
 // pages/scan.tsx or app/scan/page.tsx
 "use client";
+
 import QrScanner from '@/components/QrScanner'
 // import { auth } from '@/firebaseConfig'
 import api from '@/utils/axiosConfig';
@@ -12,18 +13,29 @@ export default function ScanPage() {
 
     if (!user) return;
 
-    const userData = {
-        name: "user"
-    }
+    console.log(result);
+
+    // const userData = {
+    //     name: "user"
+    // }
     // uid: TAC8g9IkSag5m7Gy6wouaShD7YF2
 
+    await api.get(`/student/${user.uid}`)
+    .then((res)=> {
+        const {name, batch, id} = res.data;
+        const userData = {
+            name,
+            batch,
+            id,
+            endClass: "11:10 AM",
+            serialNo: 12
+        }
 
-    await api.post('/serial', result)
-    .then((res)=> alert(res.data))
+        api.post('/serial', userData)
+        .then(()=> alert("Your serial is 22"))
+        .catch((err)=> console.log(err))
+    })
     .catch((err)=> console.log(err))
-
-
-    alert(result)
   }
 
   return <QrScanner onScanSuccess={handleScan} />

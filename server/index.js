@@ -16,7 +16,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 const serialHandler = require('./routeHanlder/serialHandler');
+const studentHandler = require('./routeHanlder/studentHandler');
 app.use('/serial', serialHandler);
+app.use('/student', studentHandler);
 
 
 app.get('/', (req, res)=>{
