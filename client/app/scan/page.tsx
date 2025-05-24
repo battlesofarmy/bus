@@ -3,18 +3,21 @@
 import QrScanner from '@/components/QrScanner'
 // import { auth } from '@/firebaseConfig'
 import api from '@/utils/axiosConfig';
+import useAuthStore from '@/utils/store/authStore';
 
 export default function ScanPage() {
+  const { user } = useAuthStore();
+    
   const handleScan = async (result: string) => {
-    // const user = auth.currentUser
-    // if (!user) return
 
-    // await fetch('/api/save-scan', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    // //   body: JSON.stringify({ userEmail: user.email, scannedText: result }),
-    //   body: JSON.stringify({ userEmail: "johfa@gmial.com", scannedText: result }),
-    // })
+    if (!user) return;
+
+    const userData = {
+        name: "user"
+    }
+    // uid: TAC8g9IkSag5m7Gy6wouaShD7YF2
+
+
     await api.post('/serial', result)
     .then((res)=> alert(res.data))
     .catch((err)=> console.log(err))

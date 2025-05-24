@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import useAuthStore from "@/utils/store/authStore";
 
 export default function Header_1() {
   const pages = [
@@ -14,6 +15,13 @@ export default function Header_1() {
     { name: "Services", href: "/service" },
     { name: "Contact", href: "/contact" },
   ];
+
+  const { user, initAuth } = useAuthStore();
+
+  useEffect(() => {
+    const unsubscribe = initAuth();
+    return () => unsubscribe(); // Cleanup on unmount
+  }, []);
 
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname(); // Get current route
@@ -43,6 +51,23 @@ export default function Header_1() {
               {ele.name}
             </Link>
           ))}
+
+                {
+      user?
+         <Link href={'/login'}>
+            <button className=" hover:bg-gary-200 text-green-600 font-medium rounded py-2 px-3 text-xs">LogOut</button>
+          </Link> 
+        :
+        <div className="flex gap-2 items-center ml-4">
+          <Link href={'/register'}>
+            <button className=" border-primary border-r-[1px] border-l-[1px] rounded py-2 px-3 font-medium  text-xs hover:bg-[#212124]">Register</button>
+          </Link>
+          <Link href={'/login'}>
+            <button className=" hover:bg-gary-200 text-gray-900 font-medium rounded py-2 px-3 text-xs">Login</button>
+          </Link>
+        </div>
+      }
+      
         </nav>
 
         {/* Mobile Menu ======================== */}
