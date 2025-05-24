@@ -1,12 +1,13 @@
 // pages/scan.tsx or app/scan/page.tsx
 "use client";
 
-import QrScanner from '@/components/QrScanner'
+// import QrScanner from '@/components/QrScanner'
 // import { auth } from '@/firebaseConfig'
 import api from '@/utils/axiosConfig';
 import useAuthStore from '@/utils/store/authStore';
 
 export default function ScanPage() {
+
   const { user } = useAuthStore();
     
   const handleScan = async (result: string) => {
@@ -35,5 +36,5 @@ export default function ScanPage() {
   }
 
 //   return <QrScanner onScanSuccess={handleScan} />
-  return <button onClick={handleScan}>Handle Scan</button>
+  return <button onClick={() => handleScan("dummy-qr-result")}>Handle Scan</button>
 }

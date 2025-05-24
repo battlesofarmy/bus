@@ -12,6 +12,7 @@ export default function Header_1() {
     { name: "Home", href: "/" },
     { name: "Scan", href: "/scan" },
     { name: "Serials", href: "/serial" },
+    { name: "Login", href: "/login" },
   ];
 
   const { user, initAuth } = useAuthStore();
