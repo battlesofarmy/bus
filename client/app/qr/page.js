@@ -9,9 +9,9 @@ export default function WishQRCode() {
   useEffect(() => {
     const generate = async () => {
       const data = {
-        type: 'wish',
-        wishId: 'abc123',
-        createdBy: 'admin@example.com',
+        type: 'bus serial tracker',
+        wishId: '1416',
+        createdBy: 'Muntasir Ahmed',
       }
 
       const url = await QRCode.toDataURL(JSON.stringify(data))
