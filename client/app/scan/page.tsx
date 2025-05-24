@@ -15,7 +15,7 @@ export default function ScanPage() {
       body: JSON.stringify({ userEmail: "johfa@gmial.com", scannedText: result }),
     })
 
-    alert('Scan saved!')
+    alert(result)
   }
 
   return <QrScanner onScanSuccess={handleScan} />

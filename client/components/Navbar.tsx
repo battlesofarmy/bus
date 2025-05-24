@@ -9,6 +9,7 @@ import Link from "next/link";
 export default function Header_1() {
   const pages = [
     { name: "Home", href: "/" },
+    { name: "Scan", href: "/scan" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/service" },
     { name: "Contact", href: "/contact" },
