@@ -12,6 +12,7 @@ type SerialData = {
   endClass: string;
   serialAt: string;
   serialNo: number;
+  onTime: boolean;
 };
 
 const SerialList = () => {
@@ -43,7 +44,7 @@ const SerialList = () => {
         >
         <div className="flex justify-between items-center border-b-[1px] mb-4 pb-1">
             <div className="flex gap-1">
-              <h2 className="text-xl font-semibold text-indigo-600 capitalize">{item.name}</h2>
+              <h2 className={`text-xl font-semibold ${item.onTime ? "text-indigo-600" : "text-red-600" }  capitalize`}>{item.name}</h2>
               <p className={"text-xs uppercase"}>({item.department})</p>
             </div>
             <p className="text-sm text-gray-600">Serial: {item.serialNo}</p>
@@ -60,8 +61,14 @@ const SerialList = () => {
                 <p className="text-sm text-gray-600">ID: {item.id}</p>
             </div>
           </div>
-          <p className="mt-5 text-sm text-red-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, sequi.</p>
-          <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"}>Report</button>
+          {/* If add serial before class end  */}
+          {
+            !item.onTime &&
+            <div>
+               <p className="mt-5 text-sm text-red-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, sequi.</p>
+              <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"}>Report</button>
+            </div>
+          }
         </div>
       ))}
     </div>
