@@ -47,7 +47,7 @@ const restrictToCampus = (req, res, next) => {
   if (ipRangeCheck(clientIp, allowedIPs)) {
     next();
   } else {
-    return res.status(403).json({ message: 'Access restricted to bus network.' });
+    return res.status(403).json({ message: 'Access restricted! Use Bus Network' });
   }
 };
 
@@ -55,7 +55,7 @@ const restrictToCampus = (req, res, next) => {
 
 const serialHandler = require('./routeHanlder/serialHandler');
 const studentHandler = require('./routeHanlder/studentHandler');
-app.use('/serial', restrictToCampus, serialHandler);
+app.use('/serial', serialHandler);
 app.use('/student', restrictToCampus, studentHandler);
 
 

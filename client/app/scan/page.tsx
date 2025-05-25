@@ -17,9 +17,6 @@ export default function ScanPage() {
       return;
     }
 
-    console.log(result);
-
-
     await api.get(`/student/${user.uid}`)
     .then((res)=> {
         const {name, batch, id, depertment} = res.data;
@@ -30,13 +27,14 @@ export default function ScanPage() {
             depertment,
             endClass: "11:10 AM",
         }
-        // console.log(userData);
 
-        api.post('/serial', userData)
-        .then(()=> alert("Your serial is 22"))
-        .catch((err)=> console.log(err))
+        console.log(res.data);
+
+        // api.post('/serial', userData)
+        // .then(()=> alert("Your serial is 22"))
+        // .catch((err)=> console.log(err))
     })
-    .catch((err)=> console.log(err))
+    .catch((err)=> alert(err.response.data.message))
   }
 
 //   return <QrScanner onScanSuccess={handleScan} />

@@ -60,6 +60,8 @@ const SerialList = () => {
                 <p className="text-sm text-gray-600">ID: {item.id}</p>
             </div>
           </div>
+          <p className="mt-5 text-sm text-red-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, sequi.</p>
+          <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"}>Report</button>
         </div>
       ))}
     </div>

@@ -6,8 +6,11 @@ const serialSchema = mongoose.Schema({
     batch: {type: String, required: [true, "Inter Your name"]},
     depertment: {type: String, required: [true, "Inter Your depertment name"]},
     endClass: {type: String, required: [true, "Inter Your Id"]},
-    serialAt: {type: Date, default: Date.now()},
     serialNo: {type: Number, required: [true, "Inter Your Id"]},
+    onTime: {type: Boolean, default: true},
+    reason: {type: String},
+    report: {type: String},
+    serialAt: {type: Date, default: Date.now()},
 
 }, {versionKey: false});
 
