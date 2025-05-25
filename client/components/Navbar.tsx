@@ -130,8 +130,8 @@ function MenuIcon() {
 
 function Logo() {
   return(
-    <div className=" h-6 w-6">
-        <h2 className="text-2xl">Muntasir</h2>
+    <div className="">
+        <h2 className="text-2xl">Bus Assistant</h2>
     </div>
   )   
 }

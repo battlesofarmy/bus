@@ -16,8 +16,6 @@ type classes = {
   to: string,
 }
 
-
-
 export default function ScanPage() {
 
   const { user } = useAuthStore();

@@ -52,7 +52,6 @@ const restrictToCampus = (req, res, next) => {
 };
 
 
-
 const serialHandler = require('./routeHanlder/serialHandler');
 const studentHandler = require('./routeHanlder/studentHandler');
 const scheduleHandler = require('./routeHanlder/scheduleHandler');
