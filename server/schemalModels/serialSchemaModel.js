@@ -12,12 +12,10 @@ const serialSchema = mongoose.Schema({
 
 module.exports = mongoose.model("Serial", serialSchema);
 
-    // createdAt: {type: Date, default: Date.now()}
 
 // {
 //     "name" : "muntasir",
 //     "batch" : "30",
 //     "id" : "18",
 //     "endClass" : "11:40 AM",
-//     "serialNo" : "12"
 // }

@@ -1,5 +1,6 @@
 const Serial = require('../schemalModels/serialSchemaModel');
 const express = require('express');
+const getNextSerial = require('../utils/getNextSerial');
 const router = express.Router();
 
 router.get('/', async(req, res)=>{
@@ -12,8 +13,12 @@ router.get('/', async(req, res)=>{
 });
 
 router.post('/', async(req, res)=>{
+    const serialCounter = await getNextSerial();
+    const { serialNo } = req.body;
+    const data = { ...req.body, serialNo: serialCounter};
+
     try{
-        const result = await Serial(req.body).save();
+        const result = await Serial(data).save();
         res.status(200).send(result);
     }catch(err){
         res.status(500).send(err.message || "Faild to get serial list");

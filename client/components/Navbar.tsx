@@ -102,7 +102,7 @@ export default function Header_1() {
         </Sheet>
       </div>
     </header>
-  );
+  )
 }
 
 function MenuIcon() {
@@ -130,7 +130,7 @@ function MenuIcon() {
 function Logo() {
   return(
     <div className=" h-6 w-6">
-        <h2 className="text-2xl">Muntasir</h2>;
+        <h2 className="text-2xl">Muntasir</h2>
     </div>
   )   
 }
