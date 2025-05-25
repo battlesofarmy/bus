@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 const studentSchema = mongoose.Schema({
-    name: {type: String, required: [true, "Inter Your name"]},
     uid: {type: String, required: [true, "Inter Firabase UID"]},
-    batch: {type: String, required: [true, "Inter Your name"]},
+    name: {type: String, required: [true, "Inter Your name"]},
     id: {type: Number, required: [true, "Inter Your Id"]},
+    batch: {type: String, required: [true, "Inter Your name"]},
+    depertment: {type: String, required: [true, "Inter Your depertment name"]},
 }, {versionKey: false});
 
 module.exports = mongoose.model("Student", studentSchema);
