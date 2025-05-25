@@ -8,7 +8,7 @@ type SerialData = {
   name: string;
   id: number;
   batch: string;
-  depertment: string;
+  department: string;
   endClass: string;
   serialAt: string;
   serialNo: number;
@@ -44,7 +44,7 @@ const SerialList = () => {
         <div className="flex justify-between items-center border-b-[1px] mb-4 pb-1">
             <div className="flex gap-1">
               <h2 className="text-xl font-semibold text-indigo-600 capitalize">{item.name}</h2>
-              <p className={"text-xs uppercase"}>({item.depertment})</p>
+              <p className={"text-xs uppercase"}>({item.department})</p>
             </div>
             <p className="text-sm text-gray-600">Serial: {item.serialNo}</p>
         </div>

@@ -4,7 +4,7 @@ const serialSchema = mongoose.Schema({
     name: {type: String, required: [true, "Inter Your name"]},
     id: {type: Number, required: [true, "Inter Your Id"]},
     batch: {type: String, required: [true, "Inter Your name"]},
-    depertment: {type: String, required: [true, "Inter Your depertment name"]},
+    department: {type: String, required: [true, "Inter Your department name"]},
     endClass: {type: String, required: [true, "Inter Your Id"]},
     serialNo: {type: Number, required: [true, "Inter Your Id"]},
     onTime: {type: Boolean, default: true},
@@ -22,5 +22,5 @@ module.exports = mongoose.model("Serial", serialSchema);
 //     "batch" : "30",
 //     "id" : "18",
 //     "endClass" : "11:40 AM",
-//     "depertment" : "cse"
+//     "department" : "cse"
 // }

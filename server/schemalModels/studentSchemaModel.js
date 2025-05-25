@@ -5,7 +5,7 @@ const studentSchema = mongoose.Schema({
     name: {type: String, required: [true, "Inter Your name"]},
     id: {type: Number, required: [true, "Inter Your Id"]},
     batch: {type: String, required: [true, "Inter Your name"]},
-    depertment: {type: String, required: [true, "Inter Your depertment name"]},
+    department: {type: String, required: [true, "Inter Your department name"]},
 }, {versionKey: false});
 
 module.exports = mongoose.model("Student", studentSchema);

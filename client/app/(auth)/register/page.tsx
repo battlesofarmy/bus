@@ -24,7 +24,7 @@ export default function Register() {
         const name = (e.target as HTMLFormElement).fullName.value;
         const id = (e.target as HTMLFormElement).studentId.value;
         const batch = (e.target as HTMLFormElement).batch.value;
-        const depertment = (e.target as HTMLFormElement).depertment.value;
+        const department = (e.target as HTMLFormElement).department.value;
         const email = (e.target as HTMLFormElement).email.value;
         const password = (e.target as HTMLFormElement).password.value;
         const checkTerms = (e.target as HTMLFormElement).terms.checked;
@@ -56,7 +56,7 @@ export default function Register() {
             name: name,
             id,
             batch,
-            depertment,
+            department,
           }
           
           api.post('/student', student)
@@ -130,12 +130,12 @@ export default function Register() {
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6">
-                  Depertment
+                  Department
                 </label>
                 <div className="mt-2">
                   <input
-                    id="depertment"
-                    name="depertment"
+                    id="department"
+                    name="department"
                     type="text"
                     required
                     placeholder="Ex: CSE, LAW, BBA"
