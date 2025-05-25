@@ -22,14 +22,15 @@ export default function ScanPage() {
 
     await api.get(`/student/${user.uid}`)
     .then((res)=> {
-        const {name, batch, id} = res.data;
+        const {name, batch, id, depertment} = res.data;
         const userData = {
             name,
-            batch,
             id,
+            batch,
+            depertment,
             endClass: "11:10 AM",
-            serialNo: 12
         }
+        // console.log(userData);
 
         api.post('/serial', userData)
         .then(()=> alert("Your serial is 22"))

@@ -6,8 +6,9 @@ import React, { useEffect, useState } from "react";
 type SerialData = {
   _id: string;
   name: string;
-  batch: string;
   id: number;
+  batch: string;
+  depertment: string;
   endClass: string;
   serialAt: string;
   serialNo: number;
@@ -41,7 +42,10 @@ const SerialList = () => {
           className="rounded-2xl border p-4 shadow-md bg-white hover:shadow-lg transition"
         >
         <div className="flex justify-between items-center border-b-[1px] mb-4 pb-1">
-            <h2 className="text-xl font-semibold text-indigo-600 capitalize">{item.name}</h2>
+            <div className="flex gap-1">
+              <h2 className="text-xl font-semibold text-indigo-600 capitalize">{item.name}</h2>
+              <p className={"text-xs uppercase"}>({item.depertment})</p>
+            </div>
             <p className="text-sm text-gray-600">Serial: {item.serialNo}</p>
         </div>
           <div className="flex justify-between">
