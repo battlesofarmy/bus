@@ -30,8 +30,10 @@ const { Request, Response, NextFunction } = require('express');
 const allowedIPs = [
   '::1',              // localhost IPv6
   '127.0.0.1',        // localhost IPv4
-  '103.153.110.45',     // CIDR block for your campus network,
-  '103.153.110.0/24'  // campus IP range
+  '103.153.110.45',     // home wifi
+  '103.153.110.0/24',  // campus IP range,
+  '36.255.80.243', // my airtel sim
+  '36.255.80.0/24'
 ];
 
 // import * as ipRangeCheck from 'ip-range-check';
@@ -45,7 +47,7 @@ const restrictToCampus = (req, res, next) => {
   if (ipRangeCheck(clientIp, allowedIPs)) {
     next();
   } else {
-    return res.status(403).json({ message: 'Access restricted to university network.' });
+    return res.status(403).json({ message: 'Access restricted to bus network.' });
   }
 };
 
