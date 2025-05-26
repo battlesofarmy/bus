@@ -69,8 +69,7 @@ export default function ScanPage() {
 
           if(((matches.length < classList.classess.length) || matches.length==0) || currentTime < firstClass ){
               // Sob Class ses hoy nai
-              // console.log("chor")
-              // console.log("chor")
+              console.log("chor")
 
               const userData = {"onTime": false, name, id, batch, department, endClass:lastClass}
 
