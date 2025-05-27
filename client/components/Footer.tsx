@@ -5,8 +5,9 @@ function Footer() {
   return (
     <div className="bg-gray-900">
       <div className="max-w-2xl mx-auto text-white py-10">
+        <h2 className={"text-2xl text-center"}>Comming Soon!</h2>
         <div className="text-center">
-          <div className="flex justify-center my-10">
+          <div className="flex justify-center mt-8">
             <div className="flex items-center border rounded-lg px-4 py-2 w-52 mx-2">
               <div className="text-left ml-3">
                 <p className="text-xs text-gray-200">Download on</p>
@@ -21,8 +22,8 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 flex flex-col md:flex-row md:justify-between items-center text-sm text-gray-400">
-          <p className="order-2 md:order-1 mt-8 md:mt-0">
+        <div className="mt-12 flex flex-col md:flex-row md:justify-between items-center text-[13px] text-gray-400">
+          <p className="order-2 md:order-1 mt-5 md:mt-0">
             &copy; <a target='_blank' href="https://muntasir.vercel.app"> Powered by 💝CSE Depertment </a>
           </p>
           <div className="order-1 md:order-2">

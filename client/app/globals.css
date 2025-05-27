@@ -2,9 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html, body {
+  height: 100%;
+  margin: 0;
   font-family: var(--font-inter);
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* body {
+  font-family: var(--font-inter);
+} */
 
 /* Apply different fonts to specific elements */
 h2 {
