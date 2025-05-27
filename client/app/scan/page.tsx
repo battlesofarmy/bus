@@ -95,6 +95,12 @@ export default function ScanPage() {
     .catch((err)=> alert(err.message))
   }
 
-  return <QrScanner onScanSuccess={handleScan} />
-  // return <button onClick={() => handleScan("dummy-qr-result")}>Handle Scan</button>
+  return (
+    <>
+      <div className='container py-10'>
+        <QrScanner onScanSuccess={handleScan} />
+      </div>
+      {/* <button onClick={() => handleScan("dummy-qr-result")}>Handle Scan</button> */}
+    </>
+  )
 }

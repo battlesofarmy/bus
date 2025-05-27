@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 
 export default function Home() {
@@ -5,6 +6,26 @@ export default function Home() {
     <>
       <section className={"py-12"}>
         <div className="container">
+
+        {/* if heigher then 20 color red  */}
+        <div className="flex justify-center mb-12 py-5">
+          <div>
+              <div className="flex justify-center items-baseline gap-4 mb-4">
+                <h2 className={"text-green-700 text-6xl"}>14</h2>
+                <h4 className="text-sm">Last Serial</h4>
+              </div>
+              <Link href={'/serial'}>
+                <button className={"border py-1 px-4 rounded bg-gray-200 m-2 hover:bg-gray-300"}>View All Serial</button>
+              </Link>
+
+              <Link href={'/scan'}>
+                <button className={"border py-1 px-4 rounded bg-gray-200 hover:bg-gray-300 m-2"}>Add Serial</button>
+              </Link>
+          </div>
+        </div>
+
+
+          {/* Product Facilitices  */}
           <h2 className="text-2xl text-center">১ টাকা = আপনার সময় + সকলের সত্যতা যাচাই</h2>
           <p className={"text-lg mb-2"}>Facilitices:</p>
 

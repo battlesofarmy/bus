@@ -1,7 +1,7 @@
 // components/QrScanner.tsx
 'use client'
 
-import { Html5QrcodeScanner } from 'html5-qrcode'
+import { Html5QrcodeScanner, Html5QrcodeScanType } from 'html5-qrcode'
 import { useEffect } from 'react'
 
 interface Props {
@@ -13,6 +13,7 @@ export default function QrScanner({ onScanSuccess }: Props) {
     const scanner = new Html5QrcodeScanner('reader', {
       fps: 10,
       qrbox: 250,
+      supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
     }, false)
 
     scanner.render(
@@ -30,5 +31,36 @@ export default function QrScanner({ onScanSuccess }: Props) {
     }
   }, [])
 
-  return <div id="reader" />
+  // return <div id="reader" />
+  return (
+      <>
+        <style>
+          {`
+            #reader button {
+              background-color: #4f46e5;
+              color: white;
+              font-size: 16px;
+              padding: 10px 20px;
+              border-radius: 8px;
+              border: none;
+              cursor: pointer;
+            }
+
+            #reader button:hover {
+              background-color: #4338ca;
+            }
+          `}
+        </style>
+        <div
+          id="reader"
+          style={{
+            border: "2px solid #4f46e5",
+            borderRadius: "12px",
+            padding: "10px",
+            background: "#f9f9f9",
+          }}
+      />
+      </>
+);
+
 }
