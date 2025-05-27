@@ -6,7 +6,7 @@ const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
 
 // Use Middleware
-app.use(cors());
+app.use(cors()); 
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)

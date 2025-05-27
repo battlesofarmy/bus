@@ -49,6 +49,23 @@ export default function QrScanner({ onScanSuccess }: Props) {
             #reader button:hover {
               background-color: #4338ca;
             }
+
+          /* Style the camera selector dropdown */
+            #reader select {
+              background-color: white;
+              border: 1px solid #ccc;
+              padding: 8px 12px;
+              border-radius: 8px;
+              font-size: 16px;
+              margin-bottom: 12px;
+              width: 100%;
+            }
+            #reader select:focus {
+              border-color: #4f46e5;
+              outline: none;
+              box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+            }
+
           `}
         </style>
         <div

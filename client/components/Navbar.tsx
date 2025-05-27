@@ -10,8 +10,8 @@ import useAuthStore from "@/utils/store/authStore";
 export default function Header_1() {
   const pages = [
     { name: "Home", href: "/" },
-    { name: "Scan", href: "/scan" },
-    { name: "Serials", href: "/serial" },
+    { name: "Add Serial", href: "/scan" },
+    { name: "All Serial", href: "/serial" },
     { name: "Login", href: "/login" },
     { name: "Register", href: "/register" },
   ];
