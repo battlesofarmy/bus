@@ -36,6 +36,17 @@ export default function QrScanner({ onScanSuccess }: Props) {
       <>
         <style>
           {`
+           #reader {
+              padding: 30px !important;
+              border: 2px solid #4f46e5;
+              border-radius: 12px;
+              background: #f9f9f9;
+            }
+            #reader img{
+              width: 80px;
+              margin: auto;
+              padding-bottom: 20px
+            }
             #reader button {
               background-color: #4f46e5;
               color: white;
@@ -59,6 +70,8 @@ export default function QrScanner({ onScanSuccess }: Props) {
               font-size: 16px;
               margin-bottom: 12px;
               width: 100%;
+              margin-left: 10px;
+              margin-right: 10px;
             }
             #reader select:focus {
               border-color: #4f46e5;
@@ -68,15 +81,7 @@ export default function QrScanner({ onScanSuccess }: Props) {
 
           `}
         </style>
-        <div
-          id="reader"
-          style={{
-            border: "2px solid #4f46e5",
-            borderRadius: "12px",
-            padding: "10px",
-            background: "#f9f9f9",
-          }}
-      />
+        <div id="reader"/>
       </>
 );
 
