@@ -2,6 +2,7 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import api from "@/utils/axiosConfig";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 type SerialData = {
@@ -86,14 +87,19 @@ const SerialList = () => {
           )
 
         }
-        
-
+      </div>
         {
           !loading && data.length === 0 && (
-            <p className="text-center text-gray-600 col-span-full flex justify-center items-center text-lg mt-32">No Serial Added Yet! 🎉🍾🎈</p>
+            <div className="flex justify-center mt-[10vh]">
+              <div className="text-center">
+                <p className="text-center text-gray-600 text-lg">No Serial Added Yet! 🎉🍾🎈</p>
+                <Link href='/scan'>
+                  <button className={"bg-gray-200 py-2 px-4 mt-4 rounded"}>Become First! 💝</button>
+                </Link>
+              </div>
+            </div>
           )
         }
-      </div>
     </div>
   );
 };
