@@ -86,12 +86,12 @@ export default function ScanPage() {
               // Class ses sob
               // console.log("valo")
 
-            //  const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
+             const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
 
 
-              const currentTime = "13:00";
+              // const currentTime = "13:00";
 
-             const userData = {"onTime": true, name, id, batch, department, endClass:lastClass, serialAt:currentTime}
+            //  const userData = {"onTime": true, name, id, batch, department, endClass:lastClass, serialAt:currentTime}
               
 
               api.post('/serial', userData)
