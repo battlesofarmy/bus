@@ -1,4 +1,5 @@
 import Link from "next/link"
+import LastSerial from "./components/LastSerial"
 
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
         <div className="flex justify-center mb-12 py-5">
           <div>
               <div className="flex justify-center items-baseline gap-4 mb-4">
-                <h2 className={"text-green-700 text-6xl"}>14</h2>
+                <LastSerial/>
                 <h4 className="text-sm">Last Serial</h4>
               </div>
               <Link href={'/serial'}>
