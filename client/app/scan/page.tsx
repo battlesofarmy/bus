@@ -5,6 +5,8 @@ import QrScanner from '@/components/QrScanner'
 // import { auth } from '@/firebaseConfig'
 import api from '@/utils/axiosConfig';
 import useAuthStore from '@/utils/store/authStore';
+import { useRouter } from 'next/navigation';
+
 
 type classTimes = {
   day: string,
@@ -19,6 +21,7 @@ type classes = {
 export default function ScanPage() {
 
   const { user } = useAuthStore();
+  const router = useRouter();
     
   const handleScan = async (result: string) => {
 
@@ -68,7 +71,12 @@ export default function ScanPage() {
               const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
 
               api.post('/serial', userData)
-              .then(()=> alert("Succesfully Added Your Serial"))
+              .then(()=> {
+                alert("Succesfully Added Your Serial");
+                setTimeout(() => {
+                   router.push('/serial')
+                }, 1500);
+              })
               .catch(()=> alert("Fail to add serial"))
             }else{
               // Class ses sob
@@ -144,7 +152,7 @@ export default function ScanPage() {
       <div className='container py-10'>
         <QrScanner onScanSuccess={handleScan} />
       </div>
-      {/* <button onClick={() => handleScan("dummy-qr-result")}>Handle Scan</button> */}
+      <button onClick={() => handleScan("dummy-qr-result")}>Handle Scan</button>
     </>
   )
 }
