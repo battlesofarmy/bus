@@ -28,15 +28,6 @@ const SerialList = () => {
         .finally(()=> setLoading(false))
     },[])
 
-  const formatDate = (iso: string) => {
-    return new Date(iso).toLocaleString("en-BD", {
-      timeZone: "Asia/Dhaka",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hour12: true,
-    });
-  };
 
   return (
     <div className="">
@@ -65,7 +56,7 @@ const SerialList = () => {
                 <div className="flex justify-between">
                   <div>
                       <p className="text-sm text-gray-500 mt-1">
-                          Serial At: <span className="font-medium">{formatDate(item.serialAt)}</span>
+                          Serial At: <span className="font-medium">{item.serialAt}</span>
                       </p>
                       <p className="text-sm text-gray-600">End Class: {item.endClass}</p>
                   </div>

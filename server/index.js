@@ -56,9 +56,12 @@ const restrictToCampus = (req, res, next) => {
 const serialHandler = require('./routeHanlder/serialHandler');
 const studentHandler = require('./routeHanlder/studentHandler');
 const scheduleHandler = require('./routeHanlder/scheduleHandler');
+const currentTime = require('./utils/currentTime');
+
 app.use('/serial', serialHandler);
 app.use('/student', restrictToCampus, studentHandler);
 app.use('/schedule', restrictToCampus, scheduleHandler);
+app.use('/time', currentTime);
 
 
 app.get('/', (req, res)=>{
