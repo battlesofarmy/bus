@@ -41,13 +41,14 @@ export default function ScanPage() {
         .then((value)=>{
           
           // const currentDat = new Date(Date.now());
-          
+
           api.get('/time')
           .then((time)=>{
 
          const weekday = time.data.weekday;
          const hour = time.data.hour;
          const minute = time.data.minute;
+         const second = time.data.minute;
 
         const classList = value.data.classTimes.find((ele:classTimes)=> ele.day === (weekday.toLocaleLowerCase()));
 
@@ -64,7 +65,7 @@ export default function ScanPage() {
               // Sob Class ses hoy nai
               console.log("chor")
 
-              const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime}
+              const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
 
               api.post('/serial', userData)
               .then(()=> alert("Succesfully Added Your Serial"))
