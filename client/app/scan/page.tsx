@@ -48,7 +48,7 @@ export default function ScanPage() {
          const weekday = time.data.weekday;
          const hour = time.data.hour;
          const minute = time.data.minute;
-         const second = time.data.minute;
+         const second = time.data.second;
 
         const classList = value.data.classTimes.find((ele:classTimes)=> ele.day === (weekday.toLocaleLowerCase()));
 
