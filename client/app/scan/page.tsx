@@ -67,8 +67,12 @@ export default function ScanPage() {
           if(((matches.length < classList.classess.length) || matches.length==0) || currentTime < firstClass ){
               // Sob Class ses hoy nai
               console.log("chor")
-
+              
               const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
+              
+              // const currentTime = "10:00";
+              // const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt: currentTime}
+
 
               api.post('/serial', userData)
               .then(()=> {
@@ -82,7 +86,13 @@ export default function ScanPage() {
               // Class ses sob
               // console.log("valo")
 
-              const userData = {"onTime": true, name, id, batch, department, endClass:lastClass}
+            //  const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
+
+
+              const currentTime = "13:00";
+
+             const userData = {"onTime": true, name, id, batch, department, endClass:lastClass, serialAt:currentTime}
+              
 
               api.post('/serial', userData)
               .then(()=> alert("Succesfully Added Your Serial"))

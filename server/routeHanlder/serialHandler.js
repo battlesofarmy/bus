@@ -13,6 +13,8 @@ router.get('/', async(req, res)=>{
 });
 
 router.post('/', async(req, res)=>{
+    console.log("hi");
+
     const serialCounter = await getNextSerial();
     const { serialNo } = req.body;
     const data = { ...req.body, serialNo: serialCounter};
