@@ -12,6 +12,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI)
 .then(()=> console.log("Successfully Connected to Database"))
 .catch((err)=> console.log(err))
+// .catch((err)=> console.log(err))
 
 
 
