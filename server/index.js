@@ -34,7 +34,9 @@ const allowedIPs = [
   '103.153.110.45',     // home wifi
   '103.153.110.0/24',  // campus IP range,
   '36.255.80.243', // my airtel sim
-  '36.255.80.0/24'
+  '36.255.80.0/24',
+  '103.138.172.49',
+  '103.138.172.0/24',
 ];
 
 // import * as ipRangeCheck from 'ip-range-check';
