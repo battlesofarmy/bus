@@ -61,8 +61,10 @@ const scheduleHandler = require('./routeHanlder/scheduleHandler');
 const currentTime = require('./utils/currentTime');
 
 app.use('/serial', serialHandler);
-app.use('/student', restrictToCampus, studentHandler);
-app.use('/schedule', restrictToCampus, scheduleHandler);
+// app.use('/student', restrictToCampus, studentHandler);
+// app.use('/schedule', restrictToCampus, scheduleHandler);
+app.use('/student', studentHandler);
+app.use('/schedule', scheduleHandler);
 app.use('/time', currentTime);
 
 
