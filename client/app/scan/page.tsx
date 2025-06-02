@@ -236,6 +236,7 @@ export default function ScanPage() {
 
     api.post('/serial', newUserData)
     .then((res)=> {
+      setShowDialog(false);
       toast({
         variant: "success",
         title: "Successfully Added Your Serial!",
@@ -265,10 +266,6 @@ export default function ScanPage() {
 
 
  <Dialog  open={showDialog} onOpenChange={setShowDialog}>
-  <DialogTrigger asChild>
-    <Button variant="outline">Open Dialog</Button>
-  </DialogTrigger>
-
     <DialogContent className="sm:max-w-[425px]">
       <form onSubmit={handleDialogSubmit}>
           <DialogHeader>

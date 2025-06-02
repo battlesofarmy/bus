@@ -44,8 +44,10 @@ export default function Home() {
           <h2 className="pt-12 mb-2 text-2xl text-center">টাকা কেন দেওয়া লাগবে ?</h2>
           <p className={"text-lg mb-2"}>Application Cost:</p>
           <p>1. মাসিক নেটওয়ার্ক ফি (wifi or MB)</p>
-          <p>2. সার্ভার ফি </p>
-          <p>3. QR কোড প্রিন্টিং + মেইনটেইনেন্স</p>
+          <p>2. বাৎসরিক সার্ভার ফি </p>
+          <p>3. QR কোড প্রিন্টিং + যন্ত্রপাতি ক্রয়</p>
+          <p>4. বিকাশ এজেন্ট একাউন্ট চার্জ </p>
+          <p>5. প্রতিনিয়ত রক্ষণাবেক্ষণ</p>
           
         </div>
       </section>

@@ -71,6 +71,12 @@ const SerialList = () => {
                   !item.onTime &&
                   <div>
                     <p className="mt-5 text-sm text-red-600">{item?.reason}</p>
+
+                    <div className="flex gap-2 mt-3 justify-center items-start">
+                      <p>1</p>
+                      <p className="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, blanditiis!</p>
+                    </div>
+
                     <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"}>Report</button>
                   </div>
                 }
