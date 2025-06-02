@@ -5,9 +5,11 @@ import { MdOutlineErrorOutline } from "react-icons/md";
 import { useState } from "react";
 import Link from "next/link";
 import useAuthStore from "@/utils/store/authStore";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const { signInUser } = useAuthStore();
+  const router = useRouter();
 
   // States
   const [showPass, setShowPass] = useState(false);
@@ -28,8 +30,10 @@ export default function Login() {
     // Check User Login
     signInUser(email, password)
       .then(() => {
-        
         setSuccessMsg("SuccessFully Login");
+        setTimeout(() => {
+          router.push('/scan')
+        }, 1500);
       })
       .catch((err) => {
         setErrMsg(err.message);

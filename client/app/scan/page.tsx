@@ -8,6 +8,7 @@ import useAuthStore from '@/utils/store/authStore';
 import { useRouter } from 'next/navigation';
 
 
+
 type classTimes = {
   day: string,
 }
@@ -22,6 +23,7 @@ export default function ScanPage() {
 
   const { user } = useAuthStore();
   const router = useRouter();
+  const { toast } = useToast()
     
   const handleScan = async (result: string) => {
 
@@ -76,7 +78,8 @@ export default function ScanPage() {
 
               api.post('/serial', userData)
               .then(()=> {
-                alert("Succesfully Added Your Serial");
+                // alert("Succesfully Added Your Serial");
+                toast({ description: "Your message has been sent."})
                 setTimeout(() => {
                    router.push('/serial')
                 }, 1500);

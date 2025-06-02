@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -12,11 +12,10 @@ export default function Header_1() {
     { name: "Home", href: "/" },
     { name: "Add Serial", href: "/scan" },
     { name: "All Serial", href: "/serial" },
-    { name: "Login", href: "/login" },
-    { name: "Register", href: "/register" },
   ];
 
-  const { user, initAuth } = useAuthStore();
+  const { user, initAuth, logout } = useAuthStore();
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = initAuth();
@@ -30,6 +29,11 @@ export default function Header_1() {
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  const handleLogout =()=>{
+    logout();
+    router.push('/login');
+  }
 
   return (
     <header className="border">
@@ -54,17 +58,21 @@ export default function Header_1() {
 
                 {
       user?
-         <Link href={'/login'}>
-            <button className=" hover:bg-gary-200 text-green-600 font-medium rounded py-2 px-3 text-xs">LogOut</button>
-          </Link> 
+          <button className="group text-sm inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 bg-gray-300/50" onClick={handleLogout}>Logout</button>
         :
         <div className="flex gap-2 items-center ml-4">
           <Link href={'/register'}>
-            <button className=" border-primary border-r-[1px] border-l-[1px] rounded py-2 px-3 font-medium  text-xs hover:bg-[#212124]">Register</button>
+            <button className="group text-sm inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 bg-gray-300/50">Register</button>
           </Link>
+
           <Link href={'/login'}>
-            <button className=" hover:bg-gary-200 text-gray-900 font-medium rounded py-2 px-3 text-xs">Login</button>
+            <button className="group text-sm inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 bg-gray-300/50">Login</button>
           </Link>
+
+
+ 
+
+
         </div>
       }
       
