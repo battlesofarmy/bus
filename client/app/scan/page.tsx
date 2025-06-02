@@ -7,6 +7,11 @@ import api from '@/utils/axiosConfig';
 import useAuthStore from '@/utils/store/authStore';
 import { useRouter } from 'next/navigation';
 
+import { useToast } from "@/hooks/use-toast"
+import { Toaster } from "@/components/ui/toaster"
+import { ToastAction } from '@radix-ui/react-toast';
+import { Link } from 'lucide-react';
+
 
 
 type classTimes = {
@@ -28,10 +33,14 @@ export default function ScanPage() {
   const handleScan = async (result: string) => {
 
     if (!user){
-      alert("Login First");
+        toast({
+          variant: "destructive",
+          title: "Oh! You are not a Logged in user",
+          description: "Please login to add a Serial",
+          duration: 3000,
+        })
       return;
     }
-    console.log(result);
 
     await api.get(`/student/${user.uid}`)
     .then((res)=> {
@@ -45,10 +54,9 @@ export default function ScanPage() {
          })
         .then((value)=>{
           
-          // const currentDat = new Date(Date.now());
 
-          api.get('/time')
-          .then((time)=>{
+        api.get('/time')
+        .then((time)=>{
 
          const weekday = time.data.weekday;
          const hour = time.data.hour;
@@ -65,44 +73,85 @@ export default function ScanPage() {
          const lastClass = classList.classess[classList.classess.length-1].to;
 
           // const userData = {"onTime": true, name, id, batch, department }
+         let checkOnTime = true;
 
-          if(((matches.length < classList.classess.length) || matches.length==0) || currentTime < firstClass ){
+          // if(((matches.length < classList.classess.length) || matches.length==0) || currentTime < firstClass ){
+          //     // Sob Class ses hoy nai
+          //     console.log("chor")
+          //     checkOnTime = false;
+              
+          //     const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
+              
+          //     // const currentTime = "10:00";
+          //     // const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt: currentTime}
+
+
+          //     api.post('/serial', userData)
+          //     .then((res)=> {
+          //       // alert("Succesfully Added Your Serial");
+
+          //       toast({
+          //         variant: "success",
+          //         title: "Successfully Added Your Serial!",
+          //         description: `Your serial is ${res.data.serialNo}`,
+          //         duration: 3000,
+          //       })
+
+
+          //       // setTimeout(() => {
+          //       //    router.push('/serial')
+          //       // }, 1500);
+          //     })
+          //     .catch(()=> alert("Fail to add serial"))
+          //   }else{
+          //     // Class ses sob
+          //     // console.log("valo")
+
+          //    const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
+
+
+          //     // const currentTime = "13:00";
+
+          //   //  const userData = {"onTime": true, name, id, batch, department, endClass:lastClass, serialAt:currentTime}
+              
+
+          //     api.post('/serial', userData)
+          //     .then(()=> alert("Succesfully Added Your Serial"))
+          //     .catch((err)=> console.log(err))
+              
+          //   }
+
+
+
+            if(((matches.length < classList.classess.length) || matches.length==0) || currentTime < firstClass  || true){
               // Sob Class ses hoy nai
               console.log("chor")
               
-              const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
-              
-              // const currentTime = "10:00";
-              // const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt: currentTime}
-
-
-              api.post('/serial', userData)
-              .then(()=> {
-                // alert("Succesfully Added Your Serial");
-                toast({ description: "Your message has been sent."})
-                setTimeout(() => {
-                   router.push('/serial')
-                }, 1500);
-              })
-              .catch(()=> alert("Fail to add serial"))
-            }else{
-              // Class ses sob
-              // console.log("valo")
-
-             const userData = {"onTime": false, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
-
-
-              // const currentTime = "13:00";
-
-            //  const userData = {"onTime": true, name, id, batch, department, endClass:lastClass, serialAt:currentTime}
-              
-
-              api.post('/serial', userData)
-              .then(()=> alert("Succesfully Added Your Serial"))
-              .catch((err)=> console.log(err))
-              
+              checkOnTime = false;
             }
 
+            const userData = {"onTime": checkOnTime, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
+
+            api.post('/serial', userData)
+              .then((res)=> {
+                toast({
+                  variant: "success",
+                  title: "Successfully Added Your Serial!",
+                  description: `Your serial is ${res.data.serialNo}`,
+                  duration: 3000,
+                });
+                // setTimeout(() => {
+                //   router.push('/serial')
+                // }, 1500);
+              })
+              .catch(()=>{
+                 toast({
+                  variant: "destructive",
+                  title: "Faild to add your Serial!",
+                  description: `Your serial is ${res.data.serialNo}`,
+                  duration: 3000,
+                })
+              })
 
           })
           .catch(()=> console.log("Time nai"))
@@ -166,6 +215,7 @@ export default function ScanPage() {
         <QrScanner onScanSuccess={handleScan} />
       </div>
       <button onClick={() => handleScan("dummy-qr-result")}>Handle Scan</button>
+      <Toaster/>
     </>
   )
 }

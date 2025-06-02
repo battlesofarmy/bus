@@ -1,5 +1,8 @@
 
 import Link from 'next/link';
+import AppleStoreIcon from '@/public/imges/footer/apple-store-icon.png'
+import PlayStoreIcon from '@/public/imges/footer/play store-icon.png'
+import Image from 'next/image';
 
 function Footer() {
   return (
@@ -9,12 +12,14 @@ function Footer() {
         <div className="text-center">
           <div className="flex justify-center mt-8">
             <div className="flex items-center border rounded-lg px-4 py-2 w-52 mx-2">
+              <Image width={30} height={30} alt='f' src={PlayStoreIcon}/>
               <div className="text-left ml-3">
                 <p className="text-xs text-gray-200">Download on</p>
                 <p className="text-sm md:text-base">Google Play Store</p>
               </div>
             </div>
             <div className="flex items-center border rounded-lg px-4 py-2 w-44 mx-2">
+              <Image width={30} height={30} alt='f' src={AppleStoreIcon}/>
               <div className="text-left ml-3">
                 <p className="text-xs text-gray-200">Download on</p>
                 <p className="text-sm md:text-base">Apple Store</p>
