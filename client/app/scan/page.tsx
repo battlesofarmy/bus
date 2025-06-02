@@ -9,8 +9,21 @@ import { useRouter } from 'next/navigation';
 
 import { useToast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
-import { ToastAction } from '@radix-ui/react-toast';
-import { Link } from 'lucide-react';
+// import { ToastAction } from '@radix-ui/react-toast';
+import { useState } from 'react';
+
+
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 
 
@@ -29,6 +42,11 @@ export default function ScanPage() {
   const { user } = useAuthStore();
   const router = useRouter();
   const { toast } = useToast()
+  const [showDialog, setShowDialog] = useState(false)
+  const [deferredUserData, setDeferredUserData] = useState<any>(null);
+
+
+  
     
   const handleScan = async (result: string) => {
 
@@ -121,16 +139,17 @@ export default function ScanPage() {
               
           //   }
 
-
+            const userData = {"onTime": true, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
 
             if(((matches.length < classList.classess.length) || matches.length==0) || currentTime < firstClass  || true){
               // Sob Class ses hoy nai
               console.log("chor")
-              
-              checkOnTime = false;
+              setDeferredUserData({...userData, "onTime": false});
+              setShowDialog(true);
+              return;
             }
 
-            const userData = {"onTime": checkOnTime, name, id, batch, department, endClass:lastClass, serialAt:currentTime +':'+ second}
+
 
             api.post('/serial', userData)
               .then((res)=> {
@@ -148,7 +167,6 @@ export default function ScanPage() {
                  toast({
                   variant: "destructive",
                   title: "Faild to add your Serial!",
-                  description: `Your serial is ${res.data.serialNo}`,
                   duration: 3000,
                 })
               })
@@ -209,6 +227,33 @@ export default function ScanPage() {
 
   }
 
+
+  const handleDialogSubmit =(e: React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault();
+    const form = e.currentTarget;
+    const reason = form.reason.value;
+    const newUserData = {...deferredUserData, reason};
+
+    api.post('/serial', newUserData)
+    .then((res)=> {
+      toast({
+        variant: "success",
+        title: "Successfully Added Your Serial!",
+        description: `Your serial is ${res.data.serialNo}`,
+        duration: 3000,
+      });
+      // setTimeout(() => {
+      //   router.push('/serial')
+      // }, 1500);
+    })
+    .catch(()=>{
+        toast({
+        variant: "destructive",
+        title: "Faild to add your Serial!",
+        duration: 3000,
+      })
+    })
+  }
   return (
     <>
       <div className='container py-10'>
@@ -216,6 +261,36 @@ export default function ScanPage() {
       </div>
       <button onClick={() => handleScan("dummy-qr-result")}>Handle Scan</button>
       <Toaster/>
+
+
+
+ <Dialog  open={showDialog} onOpenChange={setShowDialog}>
+  <DialogTrigger asChild>
+    <Button variant="outline">Open Dialog</Button>
+  </DialogTrigger>
+
+    <DialogContent className="sm:max-w-[425px]">
+      <form onSubmit={handleDialogSubmit}>
+          <DialogHeader>
+            <DialogTitle>Edit profile</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you&apos;re
+              done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4">
+              header
+              <input type="text" id='reason' name='reason' required/>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button type="submit">Save changes</Button>
+          </DialogFooter>
+         </form>
+       </DialogContent>
+    </Dialog>
     </>
   )
 }

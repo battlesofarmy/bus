@@ -15,6 +15,7 @@ type SerialData = {
   serialAt: string;
   serialNo: number;
   onTime: boolean;
+  reason: string;
 };
 
 const SerialList = () => {
@@ -69,7 +70,7 @@ const SerialList = () => {
                 {
                   !item.onTime &&
                   <div>
-                    <p className="mt-5 text-sm text-red-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, sequi.</p>
+                    <p className="mt-5 text-sm text-red-600">{item?.reason}</p>
                     <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"}>Report</button>
                   </div>
                 }
