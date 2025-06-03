@@ -2,6 +2,7 @@
 
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export default function WishQRCode() {
   const [qrUrl, setQrUrl] = useState('')
@@ -26,8 +27,8 @@ export default function WishQRCode() {
   return (
     <div>
       <h2>Wish QR Code</h2>
-      {/* Only render <img> if qrUrl is ready */}
-      {qrUrl ? <img src={qrUrl} alt="Wish QR Code" /> : <p>Loading...</p>}
+      {/* Only render <image> if qrUrl is ready */}
+      {qrUrl ? <Image width={200} height={200} src={qrUrl} alt="Wish QR Code" /> : <p>Loading...</p>}
     </div>
   )
 }
