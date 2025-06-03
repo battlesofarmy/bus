@@ -147,7 +147,7 @@ const SerialList = () => {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Go Back</Button>
+              <Button variant="outline" className="bg-gray-200 hover:bg-gray-300 mt-2 md:mt-0">Go Back</Button>
             </DialogClose>
             <Button type="submit" className='bg-[#4f46e5] hover:bg-[#4338ca] text-white'>Submit Report</Button>
           </DialogFooter>
