@@ -110,7 +110,7 @@ const SerialList = () => {
                     )
                   }
 
-                    <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"} onClick={()=> {setShowReport(true), setReportId(item._id) }}> Report</button>
+                    <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"} onClick={()=> {setShowReport(true); setReportId(item._id) }}> Report</button>
                   </div>
                 }
               </div>
