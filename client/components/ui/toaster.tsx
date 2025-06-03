@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/toast"
 
 import { cva } from "class-variance-authority" // make sure you have this
-import { cn } from "@/lib/utils" // required if using utility to combine classes
 
 const toastVariants = cva(
   "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-4 pr-6 shadow-lg transition-all",

@@ -13,7 +13,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 
 type SerialData = {
@@ -35,7 +34,6 @@ const SerialList = () => {
     const [loading, setLoading] = useState(true);
     const [showReport, setShowReport] = useState<boolean>(false);
     const [reportId, setReportId] = useState<string>('');
-
 
     useEffect(()=>{
         api.get('/serial')

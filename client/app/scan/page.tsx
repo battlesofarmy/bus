@@ -5,7 +5,7 @@ import QrScanner from '@/components/QrScanner'
 // import { auth } from '@/firebaseConfig'
 import api from '@/utils/axiosConfig';
 import useAuthStore from '@/utils/store/authStore';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 import { useToast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
@@ -22,7 +22,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 
 
@@ -40,7 +39,7 @@ type classes = {
 export default function ScanPage() {
 
   const { user } = useAuthStore();
-  const router = useRouter();
+  // const router = useRouter();
   const { toast } = useToast()
   const [showDialog, setShowDialog] = useState(false)
   const [deferredUserData, setDeferredUserData] = useState<any>(null);
@@ -61,6 +60,7 @@ export default function ScanPage() {
         })
       return;
     }
+    console.log(result);
 
     await api.get(`/student/${user.uid}`)
     .then((res)=> {
@@ -94,7 +94,6 @@ export default function ScanPage() {
          setShowLastClass(lastClass);
 
           // const userData = {"onTime": true, name, id, batch, department }
-         let checkOnTime = true;
 
           // if(((matches.length < classList.classess.length) || matches.length==0) || currentTime < firstClass ){
           //     // Sob Class ses hoy nai
