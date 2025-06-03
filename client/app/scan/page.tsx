@@ -42,8 +42,10 @@ export default function ScanPage() {
   const { user } = useAuthStore();
   const router = useRouter();
   const { toast } = useToast()
-  const [showDialog, setShowDialog] = useState(false)
+  const [showDialog, setShowDialog] = useState(true)
   const [deferredUserData, setDeferredUserData] = useState<any>(null);
+
+  const [showLastClass, setShowLastClass] = useState<string>("");
 
 
   
@@ -89,6 +91,7 @@ export default function ScanPage() {
 
          const firstClass = classList.classess[0].from;
          const lastClass = classList.classess[classList.classess.length-1].to;
+         setShowLastClass(lastClass);
 
           // const userData = {"onTime": true, name, id, batch, department }
          let checkOnTime = true;
@@ -265,25 +268,23 @@ export default function ScanPage() {
 
 
 
- <Dialog  open={showDialog} onOpenChange={setShowDialog}>
+    <Dialog  open={showDialog} onOpenChange={setShowDialog}>
     <DialogContent className="sm:max-w-[425px]">
       <form onSubmit={handleDialogSubmit}>
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
+            <DialogTitle>Tell Us Your Reason</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re
-              done.
+              আপনার ক্লাস শেষ হওয়ার কথা {showLastClass} এ। আপনি ক্লাস টাইম শেষ হওয়ার আগে কেন সিরিয়াল দিতে চান তা সবাইকে জানান (কারণ মিথ্যা হলে শাস্তি পেতে হবে)
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4">
-              header
-              <input type="text" id='reason' name='reason' required/>
+          <div className="py-5">
+              <textarea className="block px-4 w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#4f46e5] sm:leading-6" id='reason' name='reason' required rows={4}></textarea>
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">Go Back</Button>
             </DialogClose>
-            <Button type="submit">Save changes</Button>
+            <Button type="submit" className='bg-[#4f46e5] hover:bg-[#4338ca] text-white'>Submit Reason</Button>
           </DialogFooter>
          </form>
        </DialogContent>

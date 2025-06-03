@@ -13,8 +13,6 @@ router.get('/', async(req, res)=>{
 });
 
 router.post('/', async(req, res)=>{
-    console.log("hi");
-
     const serialCounter = await getNextSerial();
     const { serialNo } = req.body;
     const data = { ...req.body, serialNo: serialCounter};
@@ -28,6 +26,21 @@ router.post('/', async(req, res)=>{
     }
 });
 
+
+router.post('/report/:id', async(req, res)=>{
+    const { id } = req.params;
+    
+    try{
+        const result = await Serial.findOneAndUpdate(
+        { _id: id },
+        { $push: { reports: req.body.report } },
+        { new: true }
+        );
+        res.status(200).send(result);
+    }catch(err){
+        res.status(500).send(err.message || "Faild to get serial list");
+    }
+});
 
 router.delete('/', async(req, res)=>{
     try{

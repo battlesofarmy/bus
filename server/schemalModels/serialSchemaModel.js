@@ -9,7 +9,7 @@ const serialSchema = mongoose.Schema({
     serialNo: {type: Number, required: [true, "Inter Your Id"]},
     onTime: {type: Boolean, default: true},
     reason: {type: String},
-    report: {type: String},
+    reports: [{type: String}],
     serialAt: {type: String, required: [true, "Inter Current time"]},
 
 }, {versionKey: false});

@@ -4,6 +4,17 @@ import { Skeleton } from "@/components/ui/skeleton";
 import api from "@/utils/axiosConfig";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 type SerialData = {
   _id: string;
@@ -16,18 +27,38 @@ type SerialData = {
   serialNo: number;
   onTime: boolean;
   reason: string;
+  reports: [string];
 };
 
 const SerialList = () => {
     const [data, setData] = useState<SerialData[]>([]);
     const [loading, setLoading] = useState(true);
+    const [showReport, setShowReport] = useState<boolean>(false);
+    const [reportId, setReportId] = useState<string>('');
+
 
     useEffect(()=>{
         api.get('/serial')
         .then((res)=> setData(res.data))
         .catch((err)=> console.log(err))
         .finally(()=> setLoading(false))
-    },[])
+    },[data])
+
+    const handleReportSubmit =(e: React.FormEvent<HTMLFormElement>)=>{
+      e.preventDefault();
+      const form = e.currentTarget;
+      const report = form.report.value;
+      console.log(reportId, 'report id');
+
+      api.post(`/serial/report/${reportId}`, {report})
+      .then(()=>{
+        console.log("succesfully added");
+        setData(data);
+        setShowReport(false);
+      })
+      .catch((err)=> console.log(err))
+    }
+
 
 
   return (
@@ -72,12 +103,16 @@ const SerialList = () => {
                   <div>
                     <p className="mt-5 text-sm text-red-600">{item?.reason}</p>
 
-                    <div className="flex gap-2 mt-3 justify-center items-start">
-                      <p>1</p>
-                      <p className="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, blanditiis!</p>
-                    </div>
+                  {
+                    item.reports && item.reports.map((report: string, i)=>
+                      <div className="flex gap-2 mt-1">
+                        <p className="text-sm">{i+1}</p>
+                        <p className="text-xs">{report}</p>
+                      </div>
+                    )
+                  }
 
-                    <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"}>Report</button>
+                    <button className={"bg-gray-200 w-full py-1 mt-3 hover:bg-gray-300 text-sm"} onClick={()=> {setShowReport(true), setReportId(item._id) }}> Report</button>
                   </div>
                 }
               </div>
@@ -98,6 +133,31 @@ const SerialList = () => {
             </div>
           )
         }
+
+
+  <Dialog  open={showReport} onOpenChange={setShowReport}>
+    <DialogContent className="sm:max-w-[425px]">
+      <form onSubmit={handleReportSubmit}>
+          <DialogHeader>
+            <DialogTitle>Report The User</DialogTitle>
+            <DialogDescription>
+              উক্ত ব্যাক্তির ক্লাস শেষ হওয়ার আগে সিরিয়াল দেওয়ার কারন যদি মিথ্যে হয় তবে তা সকালের সামনে তুলে ধরুন! (শুধু মাএ এডমিন অভিযোগকারির পরিচয় যানতে পারে)
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-5">
+              <textarea className="block px-4 w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#4f46e5] sm:leading-6" id='report' name='report' required rows={4}></textarea>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Go Back</Button>
+            </DialogClose>
+            <Button type="submit" className='bg-[#4f46e5] hover:bg-[#4338ca] text-white'>Submit Report</Button>
+          </DialogFooter>
+         </form>
+       </DialogContent>
+    </Dialog>
+
+
     </div>
   );
 };
