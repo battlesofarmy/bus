@@ -36,13 +36,24 @@ type classes = {
   to: string,
 }
 
+type SerialData = {
+  name: string;
+  id: number;
+  batch: string;
+  department: string;
+  endClass: string;
+  serialAt: string;
+  onTime: boolean;
+  reason?: string;
+};
+
 export default function ScanPage() {
 
   const { user } = useAuthStore();
   // const router = useRouter();
   const { toast } = useToast()
   const [showDialog, setShowDialog] = useState(false)
-  const [deferredUserData, setDeferredUserData] = useState<any>(null);
+  const [deferredUserData, setDeferredUserData] = useState<SerialData>();
 
   const [showLastClass, setShowLastClass] = useState<string>("");
 
@@ -146,7 +157,7 @@ export default function ScanPage() {
             if(((matches.length < classList.classess.length) || matches.length==0) || currentTime < firstClass  || true){
               // Sob Class ses hoy nai
               console.log("chor")
-              setDeferredUserData({...userData, "onTime": false});
+              setDeferredUserData({...userData, onTime: false});
               setShowDialog(true);
               return;
             }
