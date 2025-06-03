@@ -103,7 +103,7 @@ const SerialList = () => {
 
                   {
                     item.reports && item.reports.map((report: string, i)=>
-                      <div className="flex gap-2 mt-1">
+                      <div key={i+999} className="flex gap-2 mt-1">
                         <p className="text-sm">{i+1}</p>
                         <p className="text-xs">{report}</p>
                       </div>
