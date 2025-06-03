@@ -42,7 +42,7 @@ export default function ScanPage() {
   const { user } = useAuthStore();
   const router = useRouter();
   const { toast } = useToast()
-  const [showDialog, setShowDialog] = useState(true)
+  const [showDialog, setShowDialog] = useState(false)
   const [deferredUserData, setDeferredUserData] = useState<any>(null);
 
   const [showLastClass, setShowLastClass] = useState<string>("");
